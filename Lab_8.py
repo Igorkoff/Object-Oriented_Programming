@@ -75,8 +75,20 @@ class WordGames:
         """
         print("User input was: " + self.the_words)
 
-class WordDuplication(WordGames): # you provide docstrings
+class WordDuplication(WordGames):
     def word_play(self):
+        """
+        Plays the game. The inherited class version of playing
+        the game has 2 types of duplicating: to duplicate every
+        character of the sentence or to duplicate every word of
+        the sentence.
+
+        Parameters: None.
+        -----------
+
+        Returns: None.
+        --------
+        """
         # Print user input
         super().word_play()
 
@@ -99,8 +111,52 @@ class WordDuplication(WordGames): # you provide docstrings
         print('')
 
 class WordScramble(WordGames): # you implement this and provide docstrings
-    pass
+    def word_play(self):
+        """
+        Plays the game. The inherited class version of playing
+        the game scrambles every word that has more than
+        3 characters.
 
+        Parameters: None.
+        -----------
+
+        Returns: None.
+        --------
+        """
+        # Print user input
+        super().word_play()
+
+        my_sentence = self.the_words.strip().split()
+
+        # Get the word from the sentence
+        for index, word in enumerate(my_sentence):
+            # check the length of the word > 3
+            if len(word) > 3:
+                # swap the indices of the 2 and last element
+                temp_word = list(word)
+                if (',' in temp_word) or ('.' in temp_word):
+                    temp = temp_word[1]
+                    temp_word[1] = temp_word[-3]
+                    temp_word[-3] = temp
+                else:
+                    # split the word in to a list of characters and swap
+                    # this swap leaves first and last in tact
+                    temp = temp_word[1]
+                    temp_word[1] = temp_word[-2]
+                    temp_word[-2] = temp
+
+                # Join the characters together and form the word
+                swapped_word = ''.join(temp_word)
+                # Replace the previous word at that position with the new swapped word
+                my_sentence[index] = swapped_word
+            else:
+                # Since the length of the word < 3 don't swap the word
+                my_sentence[index] = word
+
+        # Join all the words with a space
+        the_swap = ' '.join(my_sentence)
+        # Print word
+        print('Scramble: ' + the_swap)
 
 # prints the docstrings info
 # if this class was a python module
