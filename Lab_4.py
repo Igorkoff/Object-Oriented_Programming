@@ -13,7 +13,7 @@ class WordCloud:
         else:
             print("Issue with input file, please check!")
 
-    # opens the input file gettisburg.txt
+    # opens the input file gettysburg.txt
     # remember to open in in the correct mode
     # reads the file line by line
     # creates the dictionary containing the word itself
@@ -25,7 +25,7 @@ class WordCloud:
         my_dict = {}
 
         try:
-            fo = open("gettisburg.txt", "r")
+            fo = open("gettysburg.txt", "r")
         except Exception as e:
             my_dict = False
             print("Caught this error: %s" % e.__class__.__name__)
