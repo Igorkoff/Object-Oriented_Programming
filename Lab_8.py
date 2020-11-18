@@ -76,19 +76,36 @@ class WordGames:
         print("User input was: " + self.the_words)
 
 class WordDuplication(WordGames):
+    """
+    Class to represent the word duplication game.
+    This class inherits from the WordGames base class.
+
+    Attributes: Inherited from WordGames
+    -----------
+        __my_words : str
+            Read from user input and identifies the 
+            word or sentence that a user has inputted.
+
+    Methods:
+    --------
+        word_play:
+            Overriden method from the base class's
+            word_play. The gameplay happens here.
+    """
+
     def word_play(self):
         """
-        Plays the game. The inherited class version of playing
-        the game has 2 types of duplicating: to duplicate every
-        character of the sentence or to duplicate every word of
-        the sentence.
+        Plays the game. Overrides super().word_play().
+        This game duplicates every word that the user has
+        entered. The result is printed to standard output.
 
-        Parameters: None.
+        Attributes: None.
         -----------
-
+        
         Returns: None.
         --------
         """
+
         # Print user input
         super().word_play()
 
@@ -110,19 +127,39 @@ class WordDuplication(WordGames):
         print('Duplication 2: ' + result_2)
         print('')
 
-class WordScramble(WordGames): # you implement this and provide docstrings
+class WordScramble(WordGames):
+    """
+    Class to represent the word scrambling game.
+    This class inherits from the WordGames base class.
+
+    Attributes: Inherited from WordGames
+    -----------
+        __my_words : str
+            Read from user input and identifies the word
+            or sentence that a user has inputted.
+        
+    Methods:
+    --------
+        word_play:
+            Overriden method from the base class's
+            word_play. The gameplay happens here.
+    """
+
     def word_play(self):
         """
-        Plays the game. The inherited class version of playing
-        the game scrambles every word that has more than
-        3 characters.
+        Plays the game. Overrides super().word_play().
+        This game scrambles every word that the user has
+        entered. The result is printed to standard output.
+        Words need to be longer than 3 characters in length
+        to be scrambled.
 
-        Parameters: None.
+        Attributes: None.
         -----------
 
         Returns: None.
         --------
         """
+
         # Print user input
         super().word_play()
 
@@ -160,7 +197,7 @@ class WordScramble(WordGames): # you implement this and provide docstrings
 
 # prints the docstrings info
 # if this class was a python module
-print(WordGames.__doc__)
+# print(WordGames.__doc__)
 
 # Create instances of the classes here:
 wd = WordDuplication()
