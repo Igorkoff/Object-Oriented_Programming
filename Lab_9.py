@@ -202,8 +202,9 @@ r.student_id_property = "D18130122"
 r.display_student_data()
 
 for course in ("OOP", "Advanced Databases", "Environmental Analytics"):
-    r.student_object.courses = course
+    r.student_object_property.courses = course
 
 r.display_student_data()
 
+# print(r.student_object_property)
 # print(RegistrationData.__doc__)
