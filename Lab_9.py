@@ -66,11 +66,11 @@ class Student:
         return f"{self.student_name} {self.study_type} {self.courses}"
     
     @property
-    def study_type(self)
+    def study_type(self):
         return self.__study_type
 
     @study_type.setter
-    def study_type(self, value)
+    def study_type(self, value):
 
         if value not in (Student.UNDERGRADUATE, Student.POSTGRADUATE):
             raise ValueError
@@ -78,11 +78,11 @@ class Student:
         self.__study_type = value
 
     @property
-    def student_name(self)
+    def student_name(self):
         return self.__f_name, self.__l_name
     
     @student_name.setter
-    def student_name(self, value)
+    def student_name(self, value):
         
         if type(value) != list:
             raise TypeError
@@ -91,11 +91,11 @@ class Student:
         self.__l_name = value[1]
     
     @property
-    def courses(self)
+    def courses(self):
         return self.__courses
 
     @courses.setter
-    def courses(self, value)
+    def courses(self, value):
         
         if type(value) != str:
             raise TypeError
@@ -109,21 +109,98 @@ class Student:
 
 class RegistrationData:
     """
-    INSERT YOUR DOCSTRING INFORMATION HERE
+    The composite class. Creates a student object in its init function.
+    
+    Attributes:
+    -----------
+        __address : str
+            Student address as one string data type
+
+        __registration_fee : int
+            Fee to pay
+
+        __s_id : str
+            A student's student ID. Is only assigned later.
+            Default is "NA"
+
+        __student_obj : Student
+            Student Object, takes study_type, first name and last name as arguments.
+
+    Methods:
+    --------
+        student_object_property : property
+            returns __student_obj
+
+        student_id_property : property
+            returns __s_id
+            available as a setter method. Will raise a TypeError
+            if the student ID is not supplied as a string.
+
+        address_property : property
+            returns __address
+            available as a setter.
+
+        registration_fee_property : property
+            returns __registration_fee
+            available as a setter.
+
+        display_student_data
+            no arguments
+            no returns
+            prints all information about the student to screen.
     """
-    def __init__(self, address, registration_fee, study_type, f_name, l_name, s_id="NA"):
-        # YOUR CODE GOES HERE
-        pass
+    def __init__(self, address, registration_fee, study_type, f_name, l_name, s_id = "NA"):
+        
+        self.__address = address
+        self.__registration_fee = registration_fee
+        self.__s_id = s_id
 
-    # YOUR CODE GOES HERE
+        try:
+            self.__student_obj = Student(study_type, f_name, l_name)  # object of student class
+        except Exception as e:
+            pass
+    
+    @property
+    def student_object_property(self):
+        return self.__student_obj
+
+    @property
+    def student_id_property(self):
+        return self.__s_id
+
+    @student_id_property.setter
+    def student_id_property(self, value):
+        if type(value) != str:
+            raise TypeError
+
+        self.__s_id = value
+
+    @property
+    def address_property(self):
+        return self.__address
+
+    @address_property.setter
+    def address_property(self, value):
+        self.__address = value
+
+    @property
+    def registration_fee_property(self):
+        return self.__registration_fee
+
+    @registration_fee_property.setter
+    def registration_fee_property(self, value):
+        self.__registration_fee = value
+
+    def display_student_data(self):
+        print("Student Info: ", self.student_object_property.get_all_student_data, self.student_id_property)
+        print("Address: ", self.address_property)
+        print("Registration fee: ", self.registration_fee_property)
 
 
-
-
-r = RegistrationData("8 Lower Kevin Street, Dublin 8, Ireland", 1500, Student.POSTGRADUATE, "Bianca", "Phelan")
+r = RegistrationData("274 North Circular Road, Dublin 7, Ireland", 11500, Student.UNDERGRADUATE, "Igor", "Alekhnovych")
+r.student_id_property = "D18130122"
 r.display_student_data()
-r.student_id_property="C12345"
-r.display_student_data()
+
 for course in ("OOP", "Advanced Databases", "Environmental Analytics"):
     r.student_object.courses = course
 
